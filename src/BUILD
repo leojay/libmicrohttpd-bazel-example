@@ -13,9 +13,14 @@ cc_binary(
     srcs = ['hello_world.cc'],
     deps = [
         ':libmicrohttpd',
-        '@absl//absl/debugging:failure_signal_handler',
-        '@absl//absl/debugging:symbolize',
+        '@boringssl//:crypto',
+        '@com_google_absl//absl/debugging:failure_signal_handler',
+        '@com_google_absl//absl/debugging:symbolize',
+        '@com_google_absl//absl/strings',
     ],
     # Uncomment this to enable full static link.
     # features = ['fully_static_link'],
+
+    # Comment this out to use system malloc runtime.
+    malloc = '@com_google_tcmalloc//tcmalloc',
 )
